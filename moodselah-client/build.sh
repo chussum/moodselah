@@ -2,7 +2,7 @@
 
 NEW_DIR="build-current"
 
-npm install
+yarn install
 node scripts/build.js
 
 if [ -d $NEW_DIR ]
