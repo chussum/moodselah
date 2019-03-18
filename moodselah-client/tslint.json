@@ -1,0 +1,21 @@
+{
+  "extends": ["tslint-config-airbnb", "tslint-react", "tslint-config-prettier"],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "prettier": true,
+    "interface-name": false,
+    "import-name": false,
+    "variable-name": false,
+    "object-shorthand-properties-first": false,
+    "max-classes-per-file": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "no-empty-interface": false
+  },
+  "jsRules": {
+    "object-literal-sort-keys": false
+  },
+  "linterOptions": {
+    "exclude": ["config/**/*.js", "node_modules/**/*.ts", "coverage/lcov-report/*.js"]
+  }
+}

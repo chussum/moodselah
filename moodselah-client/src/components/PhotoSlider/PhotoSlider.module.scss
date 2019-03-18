@@ -1,0 +1,33 @@
+@import '../../shared/variables.scss';
+
+.slider {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  background: #efefef;
+}
+
+.slideItem {
+  position: relative;
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  line-height: 0;
+  .slideContent {
+    flex: 1;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-bottom: 100%; // 유동적, Padding Bottom = (Image Height / Image Width) * 100%
+  }
+}
+
+.photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  user-select: none;
+}

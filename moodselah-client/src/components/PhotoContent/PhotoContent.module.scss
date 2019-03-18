@@ -1,0 +1,119 @@
+@import '../../shared/variables.scss';
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  margin: 20px 20px 40px;
+  max-width: 935px;
+  width: 100%;
+  // border: 1px solid #efefef;
+}
+
+.header {
+  display: flex;
+  position: absolute;
+  right: 24px;
+  top: 0;
+  width: 287px;
+  height: 78px;
+  border-bottom: 1px solid #efefef;
+  align-items: center;
+  .profileLink {
+    display: flex;
+    align-items: center;
+  }
+  .avatarContainer {
+    position: relative;
+    margin-right: 12px;
+  }
+  .nick {
+    font-size: 14px;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.photoContainer {
+  position: relative;
+  display: flex;
+  background-color: #efefef;
+  justify-content: center;
+  align-items: center;
+  margin-right: 335px;
+  min-height: 450px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 16px 18px 0 24px;
+  top: 78px;
+  right: 0;
+  bottom: 0;
+  width: 335px;
+  .content {
+    order: 1;
+    flex: 1;
+    min-height: 0;
+    font-size: 13px;
+    line-height: 20px;
+    word-wrap: break-word;
+    overflow: auto;
+  }
+  .comments {
+    order: 2;
+    font-size: 13px;
+  }
+}
+
+.mapTitle {
+  margin: 20px 0 12px;
+  padding: 0 20px;
+  font-size: 28px;
+  font-weight: $font-weight-bold;
+}
+
+.mapAddress {
+  margin: 0 0 40px;
+  font-size: 14px;
+  color: #222;
+}
+
+.map {
+  width: 100%;
+  height: calc(100vh - 131px);
+}
+
+.management {
+  margin-top: 6px;
+  a,
+  button {
+    font-size: 12px;
+    color: $primary;
+    &:hover {
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+.information {
+  margin: 16px 0;
+  li {
+    margin: 0 10px 4px 0;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
+  img {
+    margin: 0 4px 0 0;
+    width: 16px;
+  }
+}

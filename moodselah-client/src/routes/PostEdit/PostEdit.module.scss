@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.row {
+  margin: 0 0 10px 0;
+  width: 100%;
+}
+
+.addressTextRow {
+  display: flex;
+}
+
+.textField {
+  width: 100%;
+}
+
+.addressTextField {
+  padding: 0;
+  flex: 1;
+}
+
+.fileContainer {
+  padding: 10px 0;
+}
+
+.buttonContainer {
+  padding: 10px 0 40px 0;
+  text-align: center;
+}
+
+.btnAddressFind {
+  height: 100%;
+  span {
+    font-size: 15px;
+  }
+}
+
+.btnSubmit {
+  width: 340px;
+  height: 40px;
+  span {
+    font-size: 15px;
+  }
+}
+
+.map {
+  height: 400px;
+  user-select: none;
+}
+
+.information {
+  font-size: 14px;
+  img {
+    margin: 0 4px 4px 0;
+    width: 14px;
+    vertical-align: middle;
+  }
+  tr {
+    display: flex;
+  }
+  th {
+    width: 120px;
+    text-align: left;
+  }
+  th,
+  td {
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+.marginBottom8 {
+  margin-bottom: 8px;
+}
+
+.switchButton {
+  font-size: 14px;
+}

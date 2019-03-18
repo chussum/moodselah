@@ -1,0 +1,41 @@
+@import '../../shared/variables.scss';
+
+$modal-height: 600px;
+
+.container {
+  position: absolute;
+  width: 600px;
+  height: 100%;
+  max-height: $modal-height;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  outline: none;
+  > div {
+    max-height: $modal-height;
+  }
+}
+
+.contentContainer {
+  background: #fff;
+}
+
+.closeContainer {
+  top: 0;
+  right: -46px;
+  position: absolute;
+  background-color: transparent;
+}
+
+.btnClose {
+  padding: 2px 16px 6px;
+  font-size: 24px;
+  font-weight: $font-weight-light;
+  width: 46px;
+  height: 46px;
+  color: #fff;
+  background: #ddd;
+  outline: none;
+  border: 1px solid #efefef;
+  border-left: 0;
+}

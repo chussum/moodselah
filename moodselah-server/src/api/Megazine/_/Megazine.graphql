@@ -1,0 +1,14 @@
+type Megazine {
+  id: Int!
+  title: String!
+  content: String!
+  photos: [Photo]
+  placeId: Int
+  place: Place
+  hit: Int!
+  likes: [User]
+  authorId: Int!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+}

@@ -1,0 +1,61 @@
+.container {
+  margin: 0;
+  padding: 0 calc(0.5 * 60px);
+  align-self: flex-end;
+  flex-basis: auto;
+  width: 300px;
+  margin-bottom: 30px;
+  @media (max-width: 460px) {
+    width: 100%;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.thumbWrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: background-color 0.2s;
+  img,
+  video {
+    position: absolute;
+    max-width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+}
+
+.thumbCaption {
+  margin-top: 12px;
+  @media (min-width: 26em) {
+    height: 60px;
+  }
+}
+
+.truncate {
+  max-width: 100%;
+  min-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  a {
+    color: rgb(136, 136, 136);
+    font-size: 12px;
+  }
+}
+
+.iconBy {
+  margin-right: 4px;
+  font-size: 12px;
+  font-style: italic;
+  font-family: Georgia, sans-serif;
+}

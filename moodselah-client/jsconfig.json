@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "module": "es6",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}

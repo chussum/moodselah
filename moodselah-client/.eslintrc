@@ -1,0 +1,41 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react", "babel", "prettier", "module-resolver"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "globals": {
+    "FormData": true,
+    "WebSocket": true
+  },
+  "rules": {
+    "global-require": "off",
+    "react/sort-comp": "off",
+    "react/prefer-stateless-function": "warn",
+    "react/jsx-filename-extension": "off",
+    "react/forbid-prop-types": "off",
+    "react/require-default-props": "warn",
+    "react/destructuring-assignment": "off",
+    "react/no-unused-state": "warn",
+    "react/no-unused-prop-types": "warn",
+    "react/no-array-index-key": "warn",
+    "import/prefer-default-export": "warn",
+    "no-param-reassign": "warn",
+    "arrow-body-style": "warn",
+    "class-methods-use-this": "off",
+    "no-unused-expressions": "off",
+    "module-resolver/use-alias": "warn",
+    "babel/no-unused-expressions": "error",
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "import/no-unresolved": ["warn", { "commonjs": false }]
+  }
+}

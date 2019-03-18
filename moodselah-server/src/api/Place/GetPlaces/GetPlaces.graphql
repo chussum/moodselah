@@ -1,0 +1,9 @@
+type GetPlacesResponse {
+  success: Boolean!
+  error: String
+  places: [Place]
+}
+
+type Query {
+  GetPlaces(lat: Float!, lng: Float!, where: String): GetPlacesResponse!
+}

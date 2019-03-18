@@ -1,0 +1,51 @@
+@import '../../../../shared/variables.scss';
+
+.btnAvatar {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 0;
+}
+
+.popupMenu {
+  position: absolute;
+  width: 120px;
+  top: $header-height - 30;
+  right: 2px;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  // box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  .menuItem {
+    padding: 0 12px;
+    font-size: 13px;
+    line-height: 30px;
+    button {
+      border: 0;
+      background: #fff;
+      text-align: left;
+    }
+    a,
+    button {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      display: block;
+      width: 100%;
+      font-size: 13px;
+      line-height: 30px;
+      font-weight: $font-weight-medium;
+      color: $primary;
+      &:hover {
+        font-weight: $font-weight-bold;
+        color: $primary;
+      }
+    }
+  }
+  .line {
+    margin: 6px 10px;
+    border-bottom: 1px solid #efefef;
+  }
+}

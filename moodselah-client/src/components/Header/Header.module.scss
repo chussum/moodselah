@@ -1,0 +1,82 @@
+@import '../../shared/variables.scss';
+
+.header {
+  width: 100%;
+}
+
+.content {
+  $max-width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 30px 0 30px;
+  max-width: $max-width;
+  width: 100%;
+  height: $header-height;
+  nav {
+    margin: 0 0 0 12px;
+    display: flex;
+    align-items: center;
+    a {
+      margin: 0 10px;
+      font-size: 13px;
+      font-weight: 400;
+      &:last-of-type {
+        margin: 0 0 0 10px;
+      }
+      &.active {
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+.leftContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.rightContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  a {
+    margin: 0 10px;
+    font-size: 13px;
+    font-weight: $font-weight-regular;
+    &:hover {
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+.asideContainer {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 12px;
+  .btn {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 6px;
+    padding: 0 8px;
+    min-width: 60px;
+    border: 1px solid #000;
+    &.register {
+      background: #000;
+      color: #fff;
+    }
+  }
+}
+
+.avatarContainer {
+  margin: 0 0 0 20px;
+}

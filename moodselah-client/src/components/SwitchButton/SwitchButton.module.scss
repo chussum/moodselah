@@ -1,0 +1,75 @@
+@import '../../shared/variables.scss';
+
+$error-color: #d93900;
+$success-color: #4caf50;
+$border-color: #efefef;
+
+.row {
+  position: relative;
+}
+
+.error {
+  padding: 4px 10px 0 10px;
+  text-align: left;
+  font-size: 15px;
+  color: $error-color;
+}
+
+.success {
+  padding: 4px 10px 0 10px;
+  text-align: left;
+  font-size: 15px;
+  color: $success-color;
+}
+
+.switchButton {
+  $width: 97px;
+  .active {
+    color: $primary;
+    border: solid 1px $primary;
+    z-index: 1;
+  }
+  input {
+    position: absolute;
+    display: none;
+    &:checked + label {
+      color: $primary;
+      border: solid 1px $primary;
+      z-index: 1;
+    }
+  }
+  label {
+    position: relative;
+    float: left;
+    display: block;
+    padding: 0 10px;
+    min-width: $width;
+    height: 40px;
+    line-height: 38px;
+    color: #666;
+    text-align: center;
+    border: solid 1px $border-color;
+    &:hover {
+      cursor: pointer;
+      color: $primary;
+      border: solid 1px $primary;
+      z-index: 1;
+    }
+    &:not(:first-of-type) {
+      margin-left: -1px;
+    }
+    &:first-of-type {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    &:last-of-type {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}

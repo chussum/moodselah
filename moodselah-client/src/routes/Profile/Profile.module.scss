@@ -1,0 +1,150 @@
+@import '../../shared/variables.scss';
+
+.empty {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-weight: $font-weight-thin;
+  font-size: 20px;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.profile {
+  flex: 1;
+  width: 100%;
+}
+
+.nick {
+  font-size: 30px;
+  font-weight: $font-weight-thin;
+}
+
+.header {
+  margin: 0 auto;
+  padding: 50px 0 20px;
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+}
+
+.avatarContainer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.userContainer {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  .row {
+    padding: 6px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .count {
+    padding: 0 12px 0 4px;
+  }
+  .link {
+    font-size: 15px;
+  }
+}
+
+.tabContainer {
+  margin: 0 auto;
+  padding: 10px 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  @media screen and (min-width: 940px) {
+    position: sticky;
+    top: 0;
+    z-index: $header-z-index + 1;
+  }
+}
+
+.tabBar {
+  $border-radius: 4px;
+  margin: 0 auto;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid $light-gray;
+  border-radius: $border-radius;
+  background-color: $white;
+  li {
+    padding: 15px 0;
+    flex: 1;
+    text-align: center;
+    font-weight: $font-weight-bold;
+    font-size: 15px;
+    border-radius: $border-radius;
+    &.active {
+      background-color: $light-gray;
+    }
+    &:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.contentContainer {
+  margin: 0 auto;
+  width: 88%;
+}
+
+.content {
+  margin: 60px auto 0;
+  max-width: 1440px;
+  overflow: hidden;
+}
+
+.grid {
+  margin: 0 calc(-0.5 * 60px);
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.buttonContainer {
+  padding: 0 0 80px 0;
+  text-align: center;
+}
+
+.loadMore {
+  width: 355px;
+  height: 60px;
+  span {
+    font-weight: $font-weight-semi-bold;
+    font-size: 11px;
+  }
+}
+
+.loader {
+  margin: 10px 0 50px 0;
+  display: block;
+  flex: 1 0 100%;
+  text-align: center;
+}
+
+.btnProfileEdit {
+  margin: 0 0 0 16px;
+  padding: 10px;
+  color: #222;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  font-size: 13px;
+  &:hover {
+    background: #efefef;
+  }
+}

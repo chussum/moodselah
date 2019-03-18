@@ -1,0 +1,50 @@
+%size {
+  width: 50px;
+  height: 50px;
+  &.xs {
+    width: 20px;
+    height: 20px;
+  }
+  &.sm {
+    width: 36px;
+    height: 36px;
+  }
+  &.m {
+    width: 42px;
+    height: 42px;
+  }
+  &.lg {
+    width: 80px;
+    height: 80px;
+  }
+  &.xl {
+    width: 120px;
+    height: 120px;
+  }
+  &.xxl {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.container {
+  position: relative;
+  line-height: 0;
+  @extend %size;
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    pointer-events: none;
+    border: 1px solid rgba(0, 0, 0, 0.0975);
+    border-radius: 50%;
+  }
+}
+
+.avatar {
+  border-radius: 150%;
+  @extend %size;
+}

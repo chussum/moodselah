@@ -1,0 +1,41 @@
+@import '../../shared/variables.scss';
+
+.container {
+  margin: 0 auto;
+  width: 88%;
+}
+
+.content {
+  margin: 60px auto 0;
+  max-width: 1440px;
+  overflow: hidden;
+}
+
+.grid {
+  margin: 0 calc(-0.5 * 60px);
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.buttonContainer {
+  padding: 0 0 80px 0;
+  text-align: center;
+}
+
+.loadMore {
+  width: 355px;
+  height: 60px;
+  span {
+    font-weight: $font-weight-semi-bold;
+    font-size: 11px;
+  }
+}
+
+.loader {
+  margin: 10px 0 50px 0;
+  display: block;
+  flex: 1 0 100%;
+  text-align: center;
+}

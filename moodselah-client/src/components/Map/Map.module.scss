@@ -1,0 +1,39 @@
+@import '../../shared/variables.scss';
+
+.info {
+  position: relative;
+  padding: 20px;
+  min-height: 200px;
+  letter-spacing: -0.5px;
+  .title {
+    padding: 0 0 16px 0;
+    border-bottom: 1px solid #efefef;
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+  }
+  .btnContainer {
+    margin: 16px 0 16px;
+  }
+  .btnLink {
+    display: inline-block;
+    padding: 10px;
+    font-size: 12px;
+    color: #222;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    &:not(:last-of-type) {
+      margin-right: 6px;
+    }
+    &:hover {
+      background: #efefef;
+    }
+  }
+}
+
+.photos {
+  margin: 0 -4px;
+  img {
+    padding: 4px;
+    max-width: 100%;
+  }
+}

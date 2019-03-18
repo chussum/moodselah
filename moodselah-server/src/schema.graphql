@@ -1,0 +1,347 @@
+type Chat {
+  id: Int!
+  messages: [Message]
+  senderId: Int
+  sender: User!
+  receiverId: Int!
+  receiver: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Message {
+  id: Int!
+  text: String!
+  chatId: Int
+  chat: Chat!
+  user: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+type GetChatResponse {
+  success: Boolean!
+  error: String
+  chat: Chat
+}
+
+type Query {
+  GetChat(chatId: Int!): GetChatResponse!
+  GetMyPlaces(skip: Int, limit: Int): GetMyPlacesResponse!
+  GetPlaces(lat: Float!, lng: Float!, where: String): GetPlacesResponse!
+  GetPost(id: Int!): GetPostResponse!
+  GetPostLikeUsers(id: Int!, skip: Int, limit: Int): GetPostLikeUsersResponse!
+  GetPosts(skip: Int, limit: Int, order: String, where: String): GetPostsResponse!
+  GetFollower(userId: Int!, skip: Int, limit: Int): GetFollowerResponse!
+  GetFollowing(userId: Int!, skip: Int, limit: Int): GetFollowingResponse!
+  GetMyProfile: GetMyProfileResponse!
+  GetUser(id: Int!): GetUserResponse!
+  GetUserByNick(nick: String!): GetUserResponse!
+}
+
+type Subscription {
+  MessageSubscription: Message
+}
+
+type SendChatMessageResponse {
+  success: Boolean!
+  error: String
+  message: Message
+}
+
+type Mutation {
+  SendChatMessage(text: String!, chatId: Int!): SendChatMessageResponse!
+  MultipleUpload(files: [Upload!]!): MultipleUploadResponse!
+  SingleUpload(file: Upload!): SingleUploadResponse!
+  AddPlace(name: String!, lat: Float!, lng: Float!, address: String!, isFav: Boolean!): AddPlaceResponse!
+  DeletePlace(placeId: Int!): DeletePlaceResponse!
+  EditPlace(placeId: Int!, name: String, isFav: Boolean): EditPlaceResponse!
+  AddPost(content: String, files: [Upload!]!, wifi: Int!, childChair: Int!, study: Int!, address: String, lat: Float, lng: Float): AddPostResponse!
+  DeletePost(id: Int!): DeletePostResponse!
+  EditPost(id: Int!, content: String!, wifi: Int!, childChair: Int!, study: Int!, address: String, lat: Float, lng: Float): EditPostResponse!
+  TogglePostLike(id: Int!): TogglePostLikeResponse!
+  CompleteEmailVerification(key: String!): CompleteEmailVerificationResponse!
+  CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
+  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
+  EmailSignUp(email: String!, password: String!, confirmPassword: String!, nick: String!, profilePhoto: String, phoneNumber: String): EmailSignUpResponse!
+  FacebookConnect(email: String, nick: String!, fbId: String!): FacebookConnectResponse!
+  RequestEmailVerification: RequestEmailVerificationResponse!
+  StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+  ToggleUserFollow(userId: Int!): ToggleUserFollowResponse!
+  UpdateMyProfile(nick: String, email: String, password: String, confirmPassword: String, profilePhoto: String, profileFile: Upload, phoneNumber: String): UpdateMyProfileResponse!
+}
+
+type Comment {
+  id: Int!
+  content: String!
+  postId: Int
+  post: Post
+  megazineId: Int
+  megazine: Megazine
+  parentId: Int
+  parent: Comment
+  childs: [Comment]
+  likeCount: Int
+  authorId: Int!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+scalar Upload
+
+type File {
+  id: ID!
+  path: String!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
+type MultipleUploadResponse {
+  success: Boolean!
+  error: String
+  files: [File]
+}
+
+type SingleUploadResponse {
+  success: Boolean!
+  error: String
+  file: File
+}
+
+type Megazine {
+  id: Int!
+  title: String!
+  content: String!
+  photos: [Photo]
+  placeId: Int
+  place: Place
+  hit: Int!
+  likes: [User]
+  authorId: Int!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Photo {
+  id: Int!
+  title: String
+  content: String
+  path: String!
+  postId: Int
+  post: Post
+  megazineId: Int
+  megazine: Megazine
+  authorId: Int!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Place {
+  id: Int!
+  name: String!
+  lat: Float!
+  lng: Float!
+  address: String!
+  isFav: Boolean!
+  posts: [Post]
+  userId: Int!
+  user: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+type AddPlaceResponse {
+  success: Boolean!
+  error: String
+}
+
+type DeletePlaceResponse {
+  success: Boolean!
+  error: String
+}
+
+type EditPlaceResponse {
+  success: Boolean!
+  error: String
+}
+
+type GetMyPlacesResponse {
+  success: Boolean!
+  error: String
+  places: [Place]
+}
+
+type GetPlacesResponse {
+  success: Boolean!
+  error: String
+  places: [Place]
+}
+
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  wifi: Int!
+  childChair: Int!
+  study: Int!
+  photos: [Photo]
+  placeId: Int
+  place: Place
+  hit: Int!
+  isLiked: Boolean
+  likeCount: Int!
+  authorId: Int!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+}
+
+type AddPostResponse {
+  success: Boolean!
+  error: String
+  post: Post
+}
+
+type DeletePostResponse {
+  success: Boolean!
+  error: String
+}
+
+type EditPostResponse {
+  success: Boolean!
+  error: String
+  post: Post
+}
+
+type GetPostResponse {
+  success: Boolean!
+  error: String
+  post: Post
+}
+
+type GetPostLikeUsersResponse {
+  success: Boolean!
+  error: String
+  users: [User]
+}
+
+type GetPostsResponse {
+  success: Boolean!
+  error: String
+  posts: [Post]
+  hasNext: Boolean!
+}
+
+type TogglePostLikeResponse {
+  success: Boolean!
+  error: String
+  isLiked: Boolean
+}
+
+type User {
+  id: Int!
+  email: String
+  nick: String!
+  phoneNumber: String
+  profilePhoto: String
+  fbId: String
+  places: [Place]
+  posts: [Post]
+  megazines: [Megazine]
+  followingCount: Int!
+  followerCount: Int!
+  verifiedEmail: Boolean!
+  verifiedPhoneNumber: Boolean!
+  createdAt: String!
+  updatedAt: String
+}
+
+type CompleteEmailVerificationResponse {
+  success: Boolean!
+  error: String
+}
+
+type CompletePhoneVerificationResponse {
+  success: Boolean!
+  error: String
+  token: String
+}
+
+type EmailSignInResponse {
+  success: Boolean!
+  error: String
+  token: String
+  user: User
+}
+
+type EmailSignUpResponse {
+  success: Boolean!
+  error: String
+  token: String
+  user: User
+}
+
+type FacebookConnectResponse {
+  success: Boolean!
+  error: String
+  token: String
+}
+
+type GetFollowerResponse {
+  success: Boolean!
+  error: String
+  users: [User]
+}
+
+type GetFollowingResponse {
+  success: Boolean!
+  error: String
+  users: [User]
+}
+
+type GetMyProfileResponse {
+  success: Boolean!
+  error: String
+  user: User
+}
+
+type GetUserResponse {
+  success: Boolean!
+  error: String
+  user: User
+}
+
+type RequestEmailVerificationResponse {
+  success: Boolean!
+  error: String
+}
+
+type StartPhoneVerificationResponse {
+  success: Boolean!
+  error: String
+}
+
+type ToggleUserFollowResponse {
+  success: Boolean!
+  error: String
+  isFollowed: Boolean
+}
+
+type UpdateMyProfileResponse {
+  success: Boolean!
+  error: String
+}
+
+type Verification {
+  id: Int!
+  target: String!
+  payload: String!
+  key: String!
+  verified: Boolean!
+  createdAt: String!
+  updatedAt: String
+}

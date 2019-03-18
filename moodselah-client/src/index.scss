@@ -1,0 +1,91 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import './shared/variables.scss';
+@import './shared/reset.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', '애플 SD 산돌고딕 Neo',
+    'Noto Sans KR', sans-serif;
+  color: $primary;
+  background: $background-color;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  font-size: 14px;
+  color: $primary;
+  outline: none;
+  text-decoration: none;
+}
+
+b,
+strong {
+  font-weight: $font-weight-bold;
+}
+
+button {
+  font-size: 14px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.mobile-show {
+  display: none !important;
+  @media screen and (max-width: 767px) {
+    display: block !important;
+  }
+}
+
+.mobile-hide {
+  display: block !important;
+  @media screen and (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.Toastify__toast-body {
+  font-size: 14px;
+}
+
+.slick-initialized .slick-slide {
+  float: none;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 28px;
+}
+
+.slick-dots {
+  bottom: 12px;
+}
+
+.slick-dots li {
+  margin: 0 2px;
+}
+
+.slick-dots li,
+.slick-dots li button,
+.slick-dots li button:before {
+  width: 10px;
+  height: 10px;
+  line-height: 10px;
+}

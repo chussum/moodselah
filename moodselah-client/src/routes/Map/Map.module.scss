@@ -1,0 +1,12 @@
+@import '../../shared/variables.scss';
+
+.container {
+  position: relative;
+  flex: 1;
+  min-height: calc(100vh - #{$header-height});
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
