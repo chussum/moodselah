@@ -18,6 +18,10 @@
     "build": "tsc",
     "postbuild": "cd src && copy ./api/**/*.graphql ../dist/api",
     "start": "cd dist && node .",
+    "pm2:start": "pm2 start ecosystem.json",
+    "pm2:reload": "pm2 reload ecosystem.json",
+    "pm2:stop": "pm2 stop ecosystem.json",
+    "pm2:delete": "pm2 delete ecosystem.json",
     "postinstall": "cd .. && npm install"
   },
   "husky": {
