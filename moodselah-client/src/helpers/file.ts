@@ -3,6 +3,20 @@ import EXIF from 'exif-js';
 
 declare const daum: any;
 
+interface EXIFStatic {
+  getData(img: any, callback: any): any;
+  getTag(img: any, tag: any): any;
+  getAllTags(img: any): any;
+  pretty(img: any): string;
+  readFromBinaryFile(file: any): any;
+}
+
+interface Location {
+  lat: number;
+  lng: number;
+  address: string;
+}
+
 export const toImageFile = (file: File): Promise<File> => {
   return new Promise((resolve, reject) => {
     if (!(file instanceof File)) {
@@ -52,9 +66,9 @@ const convertDMSToDD = (degrees, minutes, seconds, direction) => {
   return dd;
 };
 
-export const getGPSLocation = (file: File): Promise<{ lat: number; lng: number; address: string }> => {
+export const getGPSLocation = (file: File): Promise<Location> => {
   return new Promise((resolve, reject) => {
-    const res = EXIF.getData(file, function(this: any) {
+    const res = (EXIF as EXIFStatic).getData(file, function(this: any) {
       const exifData = this.exifdata;
       if (!exifData.GPSLatitude || !exifData.GPSLongitude) {
         return reject(new Error('사진에서 GPS 정보를 받아 올 수 없습니다.'));
