@@ -1,0 +1,10 @@
+type GetUserResponse {
+  success: Boolean!
+  error: String
+  user: User
+}
+
+type Query {
+  GetUser(id: Int!): GetUserResponse!
+  GetUserByNick(nick: String!): GetUserResponse!
+}

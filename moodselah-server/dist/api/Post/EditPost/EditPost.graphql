@@ -1,0 +1,18 @@
+type EditPostResponse {
+  success: Boolean!
+  error: String
+  post: Post
+}
+
+type Mutation {
+  EditPost(
+    id: Int!
+    content: String!
+    wifi: Int!
+    childChair: Int!
+    study: Int!
+    address: String
+    lat: Float
+    lng: Float
+  ): EditPostResponse!
+}

@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "moodselah-server",
-      "script": "./src/index.ts",
+      "script": "./dist/index.js",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "instances": 1,
       "error_file": "./logs/moodselah-web-err.log",
@@ -11,9 +11,7 @@
       "max_restarts": 10,
       "env": {
         "NODE_PATH": "./src",
-        "NODE_ENV": "production",
-        "TS_NODE_PROJECT": "tsconfig.json",
-        "TS_NODE_FILES": "true"
+        "NODE_ENV": "production"
       }
     }
   ]

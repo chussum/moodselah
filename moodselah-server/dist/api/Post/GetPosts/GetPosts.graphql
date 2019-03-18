@@ -1,0 +1,15 @@
+type GetPostsResponse {
+  success: Boolean!
+  error: String
+  posts: [Post]
+  hasNext: Boolean!
+}
+
+type Query {
+  GetPosts(
+    skip: Int
+    limit: Int
+    order: String
+    where: String
+  ): GetPostsResponse!
+}

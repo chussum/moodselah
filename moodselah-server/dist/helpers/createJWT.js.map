@@ -1,0 +1,1 @@
+{"version":3,"file":"createJWT.js","sourceRoot":"","sources":["../../src/helpers/createJWT.ts"],"names":[],"mappings":";;;;;AAAA,8DAA+B;AAE/B,IAAM,SAAS,GAAG,UAAC,EAAU;IAC3B,IAAM,KAAK,GAAG,sBAAG,CAAC,IAAI,CACpB;QACE,EAAE,IAAA;KACH,EACD,OAAO,CAAC,GAAG,CAAC,SAAS,IAAI,EAAE,CAC5B,CAAC;IACF,OAAO,KAAK,CAAC;AACf,CAAC,CAAC;AAEF,kBAAe,SAAS,CAAC"}
