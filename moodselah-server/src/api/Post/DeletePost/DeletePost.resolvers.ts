@@ -1,3 +1,4 @@
+import fs from "fs";
 import { getConnection } from "typeorm";
 import Post from "../../../entities/Post";
 import User from "../../../entities/User";
@@ -25,27 +26,37 @@ const resolvers: Resolvers = {
           const post = await Post.findOne(
             { id: args.id },
             {
-              relations: ["place", "place.posts"]
+              relations: ["photos", "place", "place.posts"]
             }
           );
           if (post) {
-            if (post.authorId === user.id) {
-              await queryRunner.manager.remove(post);
-              if (post.place && post.place.posts.length === 1) {
-                await queryRunner.manager.remove(post.place);
-              }
-              await queryRunner.commitTransaction();
-              // await queryRunner.rollbackTransaction();
-              return {
-                success: true,
-                error: null
-              };
-            } else {
+            if (post.authorId !== user.id) {
               return {
                 success: false,
                 error: "권한이 없습니다."
               };
             }
+            if (post.photos) {
+              post.photos.forEach(photo => {
+                fs.unlink(photo._path, err => {
+                  if (err) {
+                    console.error(err);
+                    return;
+                  }
+                  // file removed
+                });
+              });
+            }
+            await queryRunner.manager.remove(post);
+            if (post.place && post.place.posts.length === 1) {
+              await queryRunner.manager.remove(post.place);
+            }
+            await queryRunner.commitTransaction();
+            // await queryRunner.rollbackTransaction();
+            return {
+              success: true,
+              error: null
+            };
           } else {
             return {
               success: false,

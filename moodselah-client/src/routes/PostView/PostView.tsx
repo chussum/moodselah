@@ -20,7 +20,7 @@ const PostView: React.SFC<IProps> = props => {
   }
   const { GetPost: { post = null } = {} } = props.data || {};
   if (!post) {
-    return null;
+    return <div className={s.empty}>{props.t('post.empty')}</div>;
   }
   const loggedUserId = props.user && props.user.id;
   const postedUserId = (post.author && post.author.id) || 0;

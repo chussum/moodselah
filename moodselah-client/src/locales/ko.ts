@@ -27,6 +27,7 @@ const ko = {
   'profile.edit.confirmPassword': '비밀번호 확인',
   'profile.edit.submit': '수정하기',
   'map.title': '지도',
+  'post.empty': '글을 찾을 수 없습니다.',
   'post.write.title': '글쓰기',
   'post.edit.title': '글수정'
 };

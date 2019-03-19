@@ -72,7 +72,7 @@ class MapContainer extends React.PureComponent<IProps, IState> {
     if (!isExist) {
       const script = document.createElement('script');
       script.src =
-        '//dapi.kakao.com/v2/maps/sdk.js?appkey=128a2da1935ecfc8ce068ce4e4fe0d7d&libraries=services,clusterer,drawing&autoload=false';
+        '//dapi.kakao.com/v2/maps/sdk.js?appkey=426c6c635f09d632be5a5ee00232f878&libraries=services,clusterer,drawing&autoload=false';
       script.onload = () => daum.maps.load(() => this.onInit());
       script.id = scriptId;
       document.body.appendChild(script);

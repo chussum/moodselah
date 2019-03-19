@@ -1,3 +1,5 @@
+@import '../../shared/variables.scss';
+
 .container {
   display: flex;
   flex: 1;
@@ -10,4 +12,13 @@
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+.empty {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-weight: $font-weight-thin;
+  font-size: 20px;
 }
