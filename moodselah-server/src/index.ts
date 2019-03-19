@@ -41,6 +41,9 @@ createConnection(connectionOptions)
   .then(() => {
     app.start(appOptions, handleAppStart).then(res => {
       httpServer = res;
+      if (process.send) {
+        process.send('ready');
+      }
     });
   })
   .catch(error => console.log(error));
