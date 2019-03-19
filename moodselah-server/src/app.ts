@@ -45,10 +45,7 @@ class App {
   };
 
   private registerStaticPath = (): void => {
-    this.app.express.use(
-      "/images",
-      express.static(path.resolve(__dirname, UPLOAD_FILE_PATH as string))
-    );
+    this.app.express.use("/images", express.static(UPLOAD_FILE_PATH as string));
     this.app.express.use(
       express.static(
         path.resolve(__dirname, "../../moodselah-client", "build-current")
