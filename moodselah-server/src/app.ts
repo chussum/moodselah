@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config({ path: '../.env' });
-
 import cors from "cors";
 import express, { NextFunction, Response } from "express";
 import { GraphQLServer, PubSub } from "graphql-yoga";
