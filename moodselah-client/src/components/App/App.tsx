@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Router } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 import routes, { RouteConfig } from '~/routes';
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
 import { User } from '~/types/local';
 import s from './App.module.scss';
+
+const history = createBrowserHistory();
 
 export interface AppProps {
   user?: User;
@@ -57,7 +61,7 @@ const RouteWithSubRoutes = (route: SubRouteProps) => {
 const App = (props: AppProps) => {
   const { isLoggedIn, user } = props;
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <div className={s.container}>
         <Header isLoggedIn={isLoggedIn} user={user} />
         <section className={s.content}>
@@ -72,7 +76,7 @@ const App = (props: AppProps) => {
         </section>
         <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 };
 
