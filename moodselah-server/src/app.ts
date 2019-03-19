@@ -8,7 +8,8 @@ import decodeJWT from "./helpers/decodeJWT";
 import errorMiddleware from "./middlewares/error.middleware";
 import schema from "./schema";
 
-const { UPLOAD_FILE_PATH } = process.env;
+const { NODE_ENV, UPLOAD_FILE_PATH } = process.env;
+const isProduction = NODE_ENV === "production";
 
 class App {
   public app: GraphQLServer;
@@ -36,7 +37,9 @@ class App {
 
   private registerMiddlewares = (): void => {
     this.app.express.use(cors());
-    this.app.express.use(logger("dev"));
+    if (!isProduction) {
+      this.app.express.use(logger("dev"));
+    }
     this.app.express.use(helmet());
     this.app.express.use(this.jwt);
   };
