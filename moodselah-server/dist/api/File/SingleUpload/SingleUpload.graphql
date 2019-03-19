@@ -1,9 +1,0 @@
-type SingleUploadResponse {
-  success: Boolean!
-  error: String
-  file: File
-}
-
-type Mutation {
-  SingleUpload(file: Upload!): SingleUploadResponse!
-}

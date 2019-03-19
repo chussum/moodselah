@@ -1,9 +1,0 @@
-type GetPostLikeUsersResponse {
-  success: Boolean!
-  error: String
-  users: [User]
-}
-
-type Query {
-  GetPostLikeUsers(id: Int!, skip: Int, limit: Int): GetPostLikeUsersResponse!
-}

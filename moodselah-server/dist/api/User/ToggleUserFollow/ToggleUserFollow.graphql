@@ -1,9 +1,0 @@
-type ToggleUserFollowResponse {
-  success: Boolean!
-  error: String
-  isFollowed: Boolean
-}
-
-type Mutation {
-  ToggleUserFollow(userId: Int!): ToggleUserFollowResponse!
-}

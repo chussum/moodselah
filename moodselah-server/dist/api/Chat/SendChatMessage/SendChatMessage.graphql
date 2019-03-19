@@ -1,9 +1,0 @@
-type SendChatMessageResponse {
-  success: Boolean!
-  error: String
-  message: Message
-}
-
-type Mutation {
-  SendChatMessage(text: String!, chatId: Int!): SendChatMessageResponse!
-}

@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-dotenv.config({ path: "../.env" });
+dotenv.config();
 
 import { Options } from "graphql-yoga";
-import { createConnection } from "typeorm";
+import { createConnection, getConnection } from "typeorm";
 import app from "./app";
 import connectionOptions from "./ormConfig";
 import decodeJWT from "./helpers/decodeJWT";
@@ -19,7 +19,7 @@ const appOptions: Options = {
   subscriptions: {
     path: SUBSCRIPTION_ENDPOINT,
     onConnect: async connectionParams => {
-      const token = connectionParams["Authorization"];
+      const token = connectionParams.Authorization;
       if (token) {
         const user = await decodeJWT(token);
         if (user) {
@@ -35,8 +35,31 @@ const appOptions: Options = {
 
 const handleAppStart = () => console.log(`Listening on port ${PORT}`);
 
+let httpServer;
+
 createConnection(connectionOptions)
   .then(() => {
-    app.start(appOptions, handleAppStart);
+    httpServer = app.start(appOptions, handleAppStart);
   })
   .catch(error => console.log(error));
+
+process.on('SIGINT', () => {
+  console.info('SIGINT signal received.');
+
+  if (httpServer) {
+    // Stops the server from accepting new connections and finishes existing connections.
+    httpServer.close(async (err) => {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+
+      // close your database connection and exit with success (0 code)
+      const connection = getConnection();
+      await connection.close();
+      console.log('typeorm connection disconnected');
+
+      process.exit(0);
+    });
+  }
+});

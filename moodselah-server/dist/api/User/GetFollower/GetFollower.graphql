@@ -1,9 +1,0 @@
-type GetFollowerResponse {
-  success: Boolean!
-  error: String
-  users: [User]
-}
-
-type Query {
-  GetFollower(userId: Int!, skip: Int, limit: Int): GetFollowerResponse!
-}

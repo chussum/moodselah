@@ -1,9 +1,0 @@
-type MultipleUploadResponse {
-  success: Boolean!
-  error: String
-  files: [File]
-}
-
-type Mutation {
-  MultipleUpload(files: [Upload!]!): MultipleUploadResponse!
-}
