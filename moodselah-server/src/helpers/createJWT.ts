@@ -1,4 +1,6 @@
-import process from "process";
+import dotenv from "dotenv";
+dotenv.config({ path: '../../.env' });
+
 import jwt from "jsonwebtoken";
 
 const createJWT = (id: number): string => {
