@@ -54,13 +54,13 @@ class User extends BaseEntity {
   @Column({ type: "varchar", nullable: true })
   password: string;
 
-  @Column({ type: "varchar", nullable: true })
+  @Column({ type: "varchar", nullable: true, default: "" })
   phoneNumber: string;
 
   @Column({ default: false })
   verifiedPhoneNumber: boolean;
 
-  @Column({ type: "varchar", name: "profilePhoto" })
+  @Column({ type: "varchar", name: "profilePhoto", default: "" })
   _profilePhoto: string;
 
   @Column({ type: "varchar", nullable: true })

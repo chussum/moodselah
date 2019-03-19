@@ -7,6 +7,7 @@ import {
 import { Resolvers } from "../../../types/resolvers";
 import createJWT from "../../../helpers/createJWT";
 import { sendVerificationEmail } from "../../../helpers/sendEmail";
+import cleanNullArg from "../../../helpers/cleanNullArg";
 
 const generateError = message => ({
   success: false,
@@ -21,7 +22,8 @@ const resolvers: Resolvers = {
       _,
       args: EmailSignUpMutationArgs
     ): Promise<EmailSignUpResponse> => {
-      const { email, nick, password, confirmPassword } = args;
+      const notNull: any = cleanNullArg(args);
+      const { email, nick, password, confirmPassword } = notNull;
 
       if (!email) {
         return generateError("이메일을 입력해주세요.");
@@ -49,8 +51,8 @@ const resolvers: Resolvers = {
           email,
           nick,
           password,
-          profilePhoto: args.profilePhoto || "",
-          phoneNumber: args.phoneNumber || ""
+          profilePhoto: notNull.profilePhoto || "",
+          phoneNumber: notNull.phoneNumber || ""
         }).save();
         if (newUser.email) {
           const emailVerification = await Verification.create({
