@@ -11,7 +11,7 @@
   },
   "scripts": {
     "prestart:dev": "yarn run types",
-    "start:dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql",
+    "start:dev": "nodemon --exec ts-node ./src/index.ts -e ts,graphql",
     "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
     "prebuild": "rm -rf dist",
@@ -42,7 +42,7 @@
     "class-validator": "0.8.5",
     "copy": "0.3.2",
     "cors": "2.8.4",
-    "dotenv": "6.0.0",
+    "dotenv": "7.0.0",
     "gql-merge": "0.0.6",
     "graphql-to-typescript": "0.1.2",
     "graphql-tools": "4.0.4",
