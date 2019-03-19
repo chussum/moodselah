@@ -5,7 +5,7 @@ const connectionOptions: ConnectionOptions = {
   database: "moodselah",
   synchronize: true,
   logging: false,
-  entities: ["entities/**/*.*"],
+  entities: [__dirname + "/entities/**/*.*"],
   host: process.env.DB_ENDPOINT,
   port: 3306,
   username: process.env.DB_USERNAME,
