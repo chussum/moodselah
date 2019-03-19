@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-
+import process from "process";
 import bcrypt from "bcrypt";
 import { IsEmail } from "class-validator";
 import {

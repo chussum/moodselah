@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-
+import process from "process";
 import { createWriteStream } from "fs";
 import * as mkdirp from "mkdirp";
 import nanoid from "nanoid";

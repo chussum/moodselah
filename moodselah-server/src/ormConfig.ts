@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-
+import process from "process";
 import { ConnectionOptions } from "typeorm";
 
 const connectionOptions: ConnectionOptions = {

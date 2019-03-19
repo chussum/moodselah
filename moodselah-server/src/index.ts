@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 import { Options } from "graphql-yoga";
 import { createConnection, getConnection } from "typeorm";
@@ -39,7 +39,9 @@ let httpServer;
 
 createConnection(connectionOptions)
   .then(() => {
-    httpServer = app.start(appOptions, handleAppStart);
+    app.start(appOptions, handleAppStart).then(res => {
+      httpServer = res;
+    });
   })
   .catch(error => console.log(error));
 
