@@ -22,6 +22,7 @@ export interface IState {
 class GetPlacesQuery extends Query<getPlaces> {}
 
 class MapContainer extends React.Component<IProps, IState> {
+  $mounted: boolean = false;
   fetchMore: any;
   state: IState = {
     isInfiniteScroll: false,
@@ -31,6 +32,7 @@ class MapContainer extends React.Component<IProps, IState> {
   };
 
   async componentDidMount() {
+    this.$mounted = true;
     let center: latLng | undefined;
     try {
       center = await this.getCurrentLocation();
@@ -38,11 +40,22 @@ class MapContainer extends React.Component<IProps, IState> {
       // nothing to do
     }
     const { lat, lng } = center || { lat: 37.566826, lng: 126.9786567 }; // default: 서울시청
-    this.setState({ lat, lng });
+    this.setStateIfMounted({ lat, lng });
+  }
+
+  componentWillUnmount() {
+    this.$mounted = false;
+  }
+
+  setStateIfMounted(state, callback = undefined) {
+    if (this.$mounted) {
+      this.setState(state, callback);
+    }
   }
 
   @autobind
   private onLoadMore(lat: number, lng: number) {
+    if (!this.$mounted) return;
     if (!this.fetchMore) return;
     this.fetchMore({
       variables: {

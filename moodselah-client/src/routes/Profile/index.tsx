@@ -19,6 +19,7 @@ interface IState {
 class UserProfileQuery extends Query<getUser> {}
 
 class ProfileContainer extends React.Component<IProps, IState> {
+  $mounted: boolean = false;
   fetchMore: any;
   skip: number = 0;
 
@@ -34,8 +35,23 @@ class ProfileContainer extends React.Component<IProps, IState> {
     };
   }
 
+  componentDidMount() {
+    this.$mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.$mounted = false;
+  }
+
+  setStateIfMounted(state, callback = undefined) {
+    if (this.$mounted) {
+      this.setState(state, callback);
+    }
+  }
+
   @autobind
   private onLoadMore() {
+    if (!this.$mounted) return;
     if (!this.fetchMore) return;
     if (this.state.isFinishedLoadMore) return;
 
@@ -52,7 +68,7 @@ class ProfileContainer extends React.Component<IProps, IState> {
         const prevPosts = prev.GetPosts.posts ? prev.GetPosts.posts : [];
         const nextPosts = fetchMoreResult.GetPosts.posts ? fetchMoreResult.GetPosts.posts : [];
         if (nextPosts.length < 20) {
-          this.setState({ isFinishedLoadMore: true });
+          this.setStateIfMounted({ isFinishedLoadMore: true });
         }
         return {
           ...prev,
@@ -68,7 +84,7 @@ class ProfileContainer extends React.Component<IProps, IState> {
   @autobind
   private onClickLoadMore(e: React.MouseEvent<HTMLElement>) {
     e.preventDefault();
-    this.setState({ isInfiniteScroll: true });
+    this.setStateIfMounted({ isInfiniteScroll: true });
   }
 
   @autobind

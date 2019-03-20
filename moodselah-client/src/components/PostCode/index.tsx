@@ -66,6 +66,7 @@ class PostCodeContainer extends React.Component<IProps, IState> {
     zonecodeOnly: false
   };
 
+  private $mounted: boolean = false;
   private daumPostCodeRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   constructor(props: IProps) {
@@ -79,6 +80,8 @@ class PostCodeContainer extends React.Component<IProps, IState> {
   }
 
   public componentDidMount() {
+    this.$mounted = true;
+
     const scriptId = 'kakao_postcode';
     const isExist = !!document.getElementById(scriptId);
 
@@ -94,6 +97,16 @@ class PostCodeContainer extends React.Component<IProps, IState> {
     }
   }
 
+  public componentWillUnmount() {
+    this.$mounted = false;
+  }
+
+  setStateIfMounted(state, callback = undefined) {
+    if (this.$mounted) {
+      this.setState(state, callback);
+    }
+  }
+
   @autobind
   private onInit(comp) {
     daum.postcode.load(() => {
@@ -101,12 +114,12 @@ class PostCodeContainer extends React.Component<IProps, IState> {
         oncomplete: function oncomplete(data) {
           comp.props.onComplete(data);
           if (comp.props.autoClose) {
-            comp.setState({ display: 'none' });
+            comp.setStateIfMounted({ display: 'none' });
           }
         },
         onresize: function onresize(size) {
           if (comp.props.autoResize) {
-            comp.setState({ height: size.height });
+            comp.setStateIfMounted({ height: size.height });
           }
         },
         alwaysShowEngAddr: comp.props.alwaysShowEngAddr,
@@ -134,7 +147,7 @@ class PostCodeContainer extends React.Component<IProps, IState> {
   @autobind
   private handleError(error) {
     error.target.remove();
-    this.setState({ error: true });
+    this.setStateIfMounted({ error: true });
   }
 
   render() {
