@@ -77,7 +77,7 @@ class MapContainer extends React.PureComponent<IProps, IState> {
       script.id = scriptId;
       document.body.appendChild(script);
     } else {
-      this.onInit();
+      daum.maps.load(() => this.onInit());
     }
   }
 
