@@ -39,10 +39,14 @@ const Profile: React.SFC<IProps> = props => {
   }
   const currentUserId = currentUser && currentUser.id;
   const isMe = currentUserId === user.id;
+  const profilePhotoPath = user.profilePhoto;
   return (
     <>
       <Helmet>
         <title>{nick} - Moodselah</title>
+        <meta property="og:title" content={`${nick} - Moodselah`} />
+        <meta property="og:description" content={`${nick}님의 프로필 페이지`} />
+        {profilePhotoPath ? <meta property="og:image" content={profilePhotoPath} /> : null}
       </Helmet>
       <div className={s.container}>
         {loading ? null : (
