@@ -10,6 +10,8 @@ export const content: string;
 export const comments: string;
 export const mapTitle: string;
 export const mapAddress: string;
+export const mapContainer: string;
 export const map: string;
+export const mapIcon: string;
 export const management: string;
 export const information: string;

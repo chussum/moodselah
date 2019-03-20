@@ -26,7 +26,7 @@ const INFORMATION = {
   CHILD_CHAIR: {
     0: '아기의자가 있었나?',
     1: '아기의자가 있어요.',
-    2: '아기의자가 없어요.'
+    2: '아기의자는 없어요.'
   },
   STUDY: {
     0: '모름',
@@ -82,31 +82,25 @@ const PhotoContent: React.SFC<IProps> = ({ data, isOwner, onClickRemove }) => (
             </div>
           ) : null}
         </div>
-        {/* <section className={s.comments}>
-          <ul>
-            <li>
-              <div>nick</div>
-              <div>content</div>
-            </li>
-          </ul>
-        </section> */}
+        {data.place ? (
+          <div className={s.mapContainer}>
+            <p className={s.mapAddress}>
+              <img className={s.mapIcon} src="/img/icon/map-marker.png" alt="location" />
+              {data.place.address}
+            </p>
+            <Map
+              className={s.map}
+              initialOption={{
+                level: 4,
+                center: data.place
+              }}
+              data={[data.place]}
+              maxZoomLevel={2}
+            />
+          </div>
+        ) : null}
       </div>
     </article>
-    {data.place ? (
-      <>
-        <h3 className={s.mapTitle}>LOCATION</h3>
-        <p className={s.mapAddress}>{data.place.address}</p>
-        <Map
-          className={s.map}
-          initialOption={{
-            level: 4,
-            center: data.place
-          }}
-          data={[data.place]}
-          maxZoomLevel={2}
-        />
-      </>
-    ) : null}
   </div>
 );
 
