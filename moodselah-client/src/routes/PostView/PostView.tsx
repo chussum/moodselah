@@ -29,10 +29,15 @@ const PostView: React.SFC<IProps> = props => {
   if (title.length > 10) {
     title = `${title.substring(0, 10)}...`;
   }
+  const photos: any[] = post.photos || [];
+  const previewImagePath = photos.length ? photos[0].path : null;
   return (
     <>
       <Helmet>
         <title>{title} - Moodselah</title>
+        <meta property="og:title" content={`${title} - Moodselah`} />
+        <meta property="og:description" content={post.content} />
+        {previewImagePath ? <meta property="og:image" content={previewImagePath} /> : null}
       </Helmet>
       <div className={s.container}>
         <div className={s.content}>
