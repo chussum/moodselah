@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { getConnection } from "typeorm";
 import Post from "../../../entities/Post";
 import User from "../../../entities/User";
@@ -38,7 +39,10 @@ const resolvers: Resolvers = {
             }
             if (post.photos) {
               post.photos.forEach(photo => {
-                fs.unlink(photo._path, err => {
+                const photoPath: string = photo._path.startsWith("/")
+                  ? photo._path
+                  : path.resolve(__dirname, "../../../..", photo._path);
+                fs.unlink(photoPath, err => {
                   if (err) {
                     console.error(err);
                     return;

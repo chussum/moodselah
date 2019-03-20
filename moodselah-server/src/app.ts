@@ -10,6 +10,9 @@ import schema from "./schema";
 
 const { NODE_ENV, UPLOAD_FILE_PATH } = process.env;
 const isProduction = NODE_ENV === "production";
+const uploadPath: string = (UPLOAD_FILE_PATH as string).startsWith("/")
+  ? (UPLOAD_FILE_PATH as string)
+  : path.resolve(__dirname, "..", UPLOAD_FILE_PATH as string);
 
 class App {
   public app: GraphQLServer;
@@ -45,7 +48,7 @@ class App {
   };
 
   private registerStaticPath = (): void => {
-    this.app.express.use("/images", express.static(UPLOAD_FILE_PATH as string));
+    this.app.express.use("/images", express.static(uploadPath));
     this.app.express.use(
       express.static(
         path.resolve(__dirname, "../../moodselah-client", "build-current")

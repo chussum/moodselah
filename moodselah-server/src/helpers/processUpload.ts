@@ -1,6 +1,7 @@
 import { createWriteStream } from "fs";
-import * as mkdirp from "mkdirp";
+import mkdirp from "mkdirp";
 import nanoid from "nanoid";
+import format from "date-fns/format";
 
 const { UPLOAD_FILE_PATH } = process.env;
 mkdirp.sync(UPLOAD_FILE_PATH);
@@ -13,10 +14,12 @@ const storeUpload = async ({
   const id = nanoid();
   const extension = (filename as string).split(".").pop();
   const suffix = extension ? `.${extension.toLowerCase()}` : "";
+  const datePath = format(new Date(), "YYYY/MM/DD");
   const basePath = prefix
-    ? `${UPLOAD_FILE_PATH}/${prefix}`
-    : `${UPLOAD_FILE_PATH}`;
+    ? `${UPLOAD_FILE_PATH}/${datePath}/${prefix}`
+    : `${UPLOAD_FILE_PATH}/${datePath}`;
   mkdirp.sync(basePath);
+
   const path = `${basePath}/${id}${suffix}`;
   return new Promise((resolve, reject) =>
     createReadStream()
