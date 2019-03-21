@@ -1,5 +1,7 @@
 @import '../../shared/variables.scss';
 
+$mobile-max-width: 420px;
+
 .header {
   width: 100%;
 }
@@ -11,10 +13,13 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 0 30px 0 30px;
+  padding: 0 30px;
   max-width: $max-width;
   width: 100%;
   height: $header-height;
+  @media screen and (max-width: $mobile-max-width) {
+    padding: 0 20px;
+  }
   nav {
     margin: 0 0 0 12px;
     display: flex;
@@ -30,6 +35,9 @@
         font-weight: $font-weight-bold;
       }
     }
+    @media screen and (max-width: $mobile-max-width) {
+      display: none;
+    }
   }
 }
 
@@ -38,6 +46,7 @@
   display: flex;
   align-items: center;
   h1 {
+    display: inline-block;
     font-size: 20px;
     font-weight: 600;
   }
@@ -79,4 +88,69 @@
 
 .avatarContainer {
   margin: 0 0 0 20px;
+}
+
+.drawerIconContainer {
+  margin: 4px 12px 0 0;
+  padding: 0;
+  background: transparent;
+  display: none;
+  .drawerBar1,
+  .drawerBar2,
+  .drawerBar3 {
+    width: 20px;
+    height: 2px;
+    margin: 6px 0;
+    background: #222;
+    transition: 0.4s;
+  }
+  &.activeDrawerIcon {
+    .drawerBar1 {
+      transform: rotate(-45deg) translate(-3.4px, 8px);
+    }
+    .drawerBar2 {
+      opacity: 0;
+    }
+    .drawerBar3 {
+      transform: rotate(45deg) translate(-3.4px, -8px);
+    }
+  }
+  @media screen and (max-width: $mobile-max-width) {
+    display: inline-block;
+  }
+}
+
+.drawerContainer {
+  width: 270px;
+  .drawerMenu {
+    li {
+      border-bottom: 1px solid #e0e0e0;
+      &:last-of-type {
+        border-bottom: 0;
+      }
+      a {
+        display: block;
+        padding: 15px;
+        color: #616161;
+        font-size: 16px;
+        letter-spacing: -1px;
+      }
+    }
+  }
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px;
+  background-color: #222;
+  font-size: 14px;
+  font-weight: $font-weight-semi-bold;
+  color: #fff;
+}
+
+.drawerClose {
+  font-weight: $font-weight-semi-bold;
+  background: transparent;
 }

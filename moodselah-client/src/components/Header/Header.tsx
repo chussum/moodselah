@@ -1,14 +1,66 @@
 import * as React from 'react';
 import { NavLink, Link, RouteComponentProps } from 'react-router-dom';
 import classNames from 'classnames';
+import Drawer from '@material-ui/core/Drawer';
 import i18n from '~/helpers/i18n';
 import { User } from '~/types/local';
 import LoggedRightMenu from './components/LoggedRightMenu';
 import s from './Header.module.scss';
 
-const PublicHeader = () => (
+interface DrawerIconProps {
+  isOpen: boolean;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+interface DrawerMenuProps {
+  isOpen: boolean;
+  onToggle: (
+    e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>
+  ) => void;
+}
+
+const DrawerIcon = (props: DrawerIconProps) => (
+  <button
+    type="button"
+    className={classNames(s.drawerIconContainer, props.isOpen ? s.activeDrawerIcon : null)}
+    onClick={props.onClick}
+  >
+    <div className={s.drawerBar1} />
+    <div className={s.drawerBar2} />
+    <div className={s.drawerBar3} />
+  </button>
+);
+
+const DrawerMenu = (props: DrawerMenuProps) => (
+  <Drawer open={props.isOpen} onClose={props.onToggle}>
+    <div className={s.drawerContainer}>
+      <div className={s.drawerHeader}>
+        <span>Moodselah</span>
+        <button className={s.drawerClose} type="button" onClick={props.onToggle}>
+          X
+        </button>
+      </div>
+      <ul className={s.drawerMenu}>
+        <li>
+          <a href="/">Feed</a>
+        </li>
+        <li>
+          <a href="/map">Map</a>
+        </li>
+      </ul>
+    </div>
+  </Drawer>
+);
+
+interface PublicProps {
+  isOpenDrawer: boolean;
+  toggleDrawer: () => void;
+}
+
+const PublicHeader = (props: PublicProps) => (
   <>
     <div className={s.leftContainer}>
+      <DrawerIcon onClick={props.toggleDrawer} isOpen={props.isOpenDrawer} />
       <h1>
         <Link to="/">Moodselah</Link>
       </h1>
@@ -31,17 +83,21 @@ const PublicHeader = () => (
         </Link>
       </div>
     </div>
+    <DrawerMenu isOpen={props.isOpenDrawer} onToggle={props.toggleDrawer} />
   </>
 );
 
 interface PrivateProps extends RouteComponentProps {
   t: any;
   user?: User;
+  isOpenDrawer: boolean;
+  toggleDrawer: () => void;
 }
 
-const PrivateHeader = ({ t, location, user }: PrivateProps) => (
+const PrivateHeader = ({ t, location, user, isOpenDrawer, toggleDrawer }: PrivateProps) => (
   <>
     <div className={s.leftContainer}>
+      <DrawerIcon onClick={toggleDrawer} isOpen={isOpenDrawer} />
       <h1>
         <Link to="/">Moodselah</Link>
       </h1>
@@ -64,6 +120,7 @@ const PrivateHeader = ({ t, location, user }: PrivateProps) => (
         </div>
       </div>
     </div>
+    <DrawerMenu isOpen={isOpenDrawer} onToggle={toggleDrawer} />
   </>
 );
 
@@ -71,13 +128,15 @@ interface Props extends RouteComponentProps {
   t: any;
   user?: User;
   isLoggedIn: boolean;
+  isOpenDrawer: boolean;
+  toggleDrawer: () => void;
 }
 
 const Header = (props: Props) => {
   const { isLoggedIn } = props;
   return (
     <header className={s.header}>
-      <div className={s.content}>{isLoggedIn ? <PrivateHeader {...props} /> : <PublicHeader />}</div>
+      <div className={s.content}>{isLoggedIn ? <PrivateHeader {...props} /> : <PublicHeader {...props} />}</div>
     </header>
   );
 };
