@@ -53,7 +53,16 @@ const settings = {
   slidesToShow: 4,
   slidesToScroll: 4,
   prevArrow: <SliderPrevArrow />,
-  nextArrow: <SliderNextArrow />
+  nextArrow: <SliderNextArrow />,
+  responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
 };
 
 const Map: React.SFC<IProps> = React.memo(props => (
